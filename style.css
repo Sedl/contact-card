@@ -1,0 +1,165 @@
+/* Bundled DejaVu 2.37; original TTFs and license are in fonts/. */
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  src: url("fonts/DejaVuSansMono.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DejaVu Sans Mono";
+  src: url("fonts/DejaVuSansMono-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DejaVu Sans";
+  src: url("fonts/DejaVuSans-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: dark;
+  font-family: "DejaVu Sans Mono", monospace;
+  font-synthesis: none;
+  background: #0d0d0b;
+  color: #f3ecdb;
+  --gold: #e6c779;
+  --muted: #bcb29b;
+  --trace: #63502c;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(1rem, 4vw, 3rem);
+  background:
+    radial-gradient(ellipse at 50% 0%, #b88a3420, transparent 65%),
+    radial-gradient(#b8985120 .7px, transparent .7px);
+  background-size: auto, 24px 24px;
+}
+
+main {
+  position: relative;
+  isolation: isolate;
+  width: min(40rem, 100%);
+  padding: clamp(2rem, 6vw, 3.5rem);
+  border: 1px solid #8b703d;
+  border-radius: 1.2rem;
+  background: linear-gradient(145deg, #25231c, #171813 55%, #1d1b15);
+  box-shadow: 0 24px 70px #0008, inset 0 1px #f8dda32b;
+}
+
+/* Paired perimeter traces echo the PCB antenna without covering the content. */
+main::before,
+main::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  pointer-events: none;
+  border: 1px solid var(--trace);
+  border-radius: .8rem;
+  inset: 9px;
+}
+main::after {
+  inset: 15px;
+  border-color: #94713b50;
+  border-radius: .5rem;
+}
+
+.prompt {
+  display: flex;
+  align-items: center;
+  gap: .65rem;
+  margin-top: 0;
+  color: var(--gold);
+  font-size: .9rem;
+}
+.prompt::before {
+  content: '';
+  width: .45rem;
+  height: .45rem;
+  flex: 0 0 .45rem;
+  border-radius: 50%;
+  background: #f2d68f;
+  box-shadow: 0 0 10px #e6b54c55;
+}
+
+h1 {
+  font-family: "DejaVu Sans", sans-serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 7vw, 3.4rem);
+  line-height: 1.12;
+  letter-spacing: -.035em;
+  color: #f4d999;
+  overflow-wrap: anywhere;
+}
+p { line-height: 1.7; overflow-wrap: anywhere; }
+.subtitle { color: #d8c69e; }
+.note { white-space: pre-wrap; }
+
+.contact-links {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+  display: grid;
+  gap: .75rem;
+}
+.contact-links a {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  min-height: 3rem;
+  color: var(--gold);
+  padding: .8rem 1rem;
+  border: 1px solid #685432;
+  border-radius: .4rem;
+  background: #14140f80;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+.contact-links a:hover {
+  background: #352c1b;
+  border-color: #c29d53;
+}
+.contact-icon { width: 1.35rem; height: 1.35rem; flex: 0 0 1.35rem; }
+.contact-label { min-width: 0; overflow-wrap: anywhere; }
+
+.button {
+  display: inline-block;
+  padding: 1rem 1.2rem;
+  border: 1px solid #f1d899;
+  border-radius: .4rem;
+  background: linear-gradient(110deg, #b98b3f, #efda9b 48%, #cfaa60);
+  color: #18150e;
+  box-shadow: inset 0 1px #fff5, 0 3px 12px #0003;
+  font-weight: bold;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.button:hover { background: #f2d99b; }
+a:focus-visible { outline: 3px solid #fff0bb; outline-offset: 4px; }
+[hidden] { display: none !important; }
+#status { color: var(--muted); font-size: .9rem; }
+footer {
+  margin-top: 2.5rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid #63502c80;
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.6;
+}
+
+@media (prefers-contrast: more) {
+  :root { --muted: #f3ecdb; --gold: #ffe4a3; }
+  .contact-links a { border-color: var(--gold); }
+}
