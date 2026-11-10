@@ -36,7 +36,8 @@ export function parseVCard(text) {
         const url = new URL(value);
         if (!['https:', 'http:'].includes(url.protocol) || url.username || url.password) continue;
         const github = ['github.com', 'www.github.com'].includes(url.hostname.toLowerCase());
-        card.links.push({href: url.href, label: github ? `GitHub · ${url.pathname.replace(/^\//, '') || 'github.com'}` : url.host + url.pathname});
+        const displayPath = url.pathname.replace(/\/+$/, '');
+        card.links.push({href: url.href, label: github ? `GitHub · ${displayPath.replace(/^\//, '') || 'github.com'}` : url.host + displayPath});
       } catch { /* Ignore malformed URLs; they remain in the downloaded original. */ }
     }
   }
